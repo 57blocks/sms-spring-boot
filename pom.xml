@@ -36,6 +36,7 @@
           <useSnapshotInHotfix>true</useSnapshotInHotfix>
           <useSnapshotInRelease>true</useSnapshotInRelease>
           <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
+          <pushRemote>true</pushRemote>
         </configuration>
       </plugin>
     </plugins>
