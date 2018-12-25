@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.57blocks</groupId>
+  <artifactId>sms-spring-boot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>sms-spring-boot</name>
+  <description>
+    sms-spring-boot provide a convenient approach to integrate sms service by pre-defined
+    configuration. It supports templating with resource bundle.
+  </description>
+
+  <properties>
+    <gitflow-maven-plugin.version>1.11.0</gitflow-maven-plugin.version>
+  </properties>
+
+  <modules>
+    <module>sms-spring-boot-starter</module>
+    <module>sms-spring-boot-example</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${gitflow-maven-plugin.version}</version>
+        <configuration>
+          <versionsForceUpdate>true</versionsForceUpdate>
+          <versionDigitToIncrement>1</versionDigitToIncrement>
+          <useSnapshotInHotfix>true</useSnapshotInHotfix>
+          <useSnapshotInRelease>true</useSnapshotInRelease>
+          <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
