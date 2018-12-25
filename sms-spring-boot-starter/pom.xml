@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.57blocks</groupId>
+  <version>0.1.0</version>
+  <artifactId>sms-spring-boot-starter</artifactId>
+  <name>sms-spring-boot-starter</name>
+  <description>
+    sms-spring-boot provide a convenient approach to integrate sms service by pre-defined
+    configuration. It supports templating with resource bundle.
+  </description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <gitflow-maven-plugin.version>1.11.0</gitflow-maven-plugin.version>
+    <twilio-spring-boot-starter.version>0.1.0</twilio-spring-boot-starter.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.57blocks</groupId>
+      <artifactId>twilio-spring-boot-starter</artifactId>
+      <version>${twilio-spring-boot-starter.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <!-- Import dependency management from Spring Boot -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.0.7.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${gitflow-maven-plugin.version}</version>
+        <configuration>
+          <versionsForceUpdate>true</versionsForceUpdate>
+          <versionDigitToIncrement>1</versionDigitToIncrement>
+          <useSnapshotInHotfix>true</useSnapshotInHotfix>
+          <useSnapshotInRelease>true</useSnapshotInRelease>
+          <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
