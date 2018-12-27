@@ -1,0 +1,42 @@
+language: java
+jdk:
+  - openjdk8
+
+## Build and verify
+install:
+  mvn clean install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+
+script:
+  mvn clean verify -DskipTests=true -Dmaven.javadoc.skip=false -Dgpg.skip -B -U
+
+## Only build and deploy sms-spring-boot-starter
+before_deploy:
+  - cd $BUILDING_FOLDER
+  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+  - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+  - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+  - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+  - mvn --settings .settings.xml clean deploy -DskipTests=false -Dmaven.javadoc.skip=false -B -U
+
+## Create release in Github
+deploy:
+  provider: releases
+  api_key:
+    secure: W4fKOfATeBfOXevAqcjyq7c9fbEQ/7Xyq3zd4OBQxvSCsDQV3tae3GOzu3AjvpyNoMbbzcrDwYwQJm6Oxnud9HVDrh5yQvTEtGii6gqNyKUOjxKYcahjh1gpZg3JS54Z7AjFG+otg7Yrt8KcTy82LyqJ40M5F+DlS6W7FSpwz8eNukIByHYq/Rw+vIHaujL3S2FjsiYuKZG7LlxwXB5mJn2y6agIr08+g4USKCCrVwUXkgqaLOAsob9GxQfmANCFAIo/1XbvyAMJwCfaIMtORxPAkpfheCyX4I2j4yUD26ebYczGST5sRqaJCKobxEZ9MpeJXNx8CkMfBcOXNBk7Mk2LiauOQu/MCzjwv8tJwRfV9lx0oOSuxaSucusxSfrPfvWCmI0Dr3uEZCoDV6yDm1o8J7VtV38ZPghNookCO3gb2UfnghvHY5jZmRETpb+rixXRrj5T7AQqDLnw0Gg4tKonr/gdUH7KlrCuGor924INdiQZTcSlxoDToCjZRRbLC7nAeLDp/3si7zhh59NWCzTHKgrkzHweWSge53lINpR0G8uxdUyToQwkGp9jRLHUgkfbGHKALRwV2MOfOsLO7QTvQScGH3E+faHPQ+ThQ37Oo+/QsS0GWXHdjs2nGT3C3juXUkOvNpwQ2CwhtWh0wFGPHAeA0qm7iMZF/CafTUc=
+  file:
+    - "target/sms-spring-boot-starter-$project_version.jar"
+    - "target/sms-spring-boot-starter-$project_version-javadoc.jar"
+    - "target/sms-spring-boot-starter-$project_version-sources.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: 57blocks/sms-spring-boot
+  name: $project_version
+
+cache:
+  directories:
+    - ~/.m2/repository
+
+env:
+  global:
+    - BUILDING_FOLDER="`pwd`/sms-spring-boot-starter"
