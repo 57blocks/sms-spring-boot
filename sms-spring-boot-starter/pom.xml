@@ -47,7 +47,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <twilio-spring-boot-starter.version>0.1.0</twilio-spring-boot-starter.version>
+    <twilio-spring-boot-starter.version>0.1.1</twilio-spring-boot-starter.version>
 
     <gitflow-maven-plugin.version>1.11.0</gitflow-maven-plugin.version>
     <java-doc-plugin.version>3.0.1</java-doc-plugin.version>
