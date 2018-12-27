@@ -6,7 +6,7 @@
 
   <groupId>io.57blocks</groupId>
   <artifactId>sms-spring-boot</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>sms-spring-boot</name>
