@@ -14,7 +14,7 @@ public class GreetingService {
   }
 
   public void sendMessage() {
-    this.smsService.send("+12056357762", "+13882201684", "greeting", Locale.ENGLISH,
+    this.smsService.send("+1234567890", "+987654321", "greeting", Locale.ENGLISH,
         new Object[]{"Mr. Smith"});
   }
 
