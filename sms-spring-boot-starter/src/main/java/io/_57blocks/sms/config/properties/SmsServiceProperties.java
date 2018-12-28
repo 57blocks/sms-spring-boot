@@ -9,4 +9,12 @@ public class SmsServiceProperties {
 
   private Boolean enabled = Boolean.TRUE;
   private String messageBaseName = "/sms/messages";
+
+  public String getMessageBaseName() {
+    if (messageBaseName.startsWith("/")) {
+      messageBaseName = messageBaseName.substring(1);
+    }
+
+    return messageBaseName;
+  }
 }
