@@ -1,1 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io._57blocks.sms.config.SmsServiceTwilioAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io._57blocks.sms.config.DummySmsServiceAutoConfig,\
+io._57blocks.sms.config.SmsServiceTwilioAutoConfig
